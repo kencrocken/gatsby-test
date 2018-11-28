@@ -1,3 +1,4 @@
+/* flow */
 import React from 'react';
 import Layout from '../components/layout';
 
@@ -5,22 +6,37 @@ import Header from '../components/Header';
 import Main from '../components/Main';
 import Footer from '../components/Footer';
 
-class IndexPage extends React.Component {
+type Props = {
+  location: any
+};
+
+type State = {
+  isArticleVisible: boolean,
+  timeout: boolean,
+  articleTimeout: boolean,
+  article: string,
+  icon: string,
+  loading: string,
+};
+
+class IndexPage extends React.Component<Props, State> {
   constructor(props) {
     super(props);
-    this.state = {
-      isArticleVisible: false,
-      timeout: false,
-      articleTimeout: false,
-      article: '',
-      icon: '',
-      loading: 'is-loading',
-    };
+
     this.handleOpenArticle = this.handleOpenArticle.bind(this);
     this.handleCloseArticle = this.handleCloseArticle.bind(this);
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
+
+  state = {
+    isArticleVisible: false,
+    timeout: false,
+    articleTimeout: false,
+    article: '',
+    icon: '',
+    loading: 'is-loading',
+  };
 
   componentDidMount() {
     this.timeoutId = setTimeout(() => {
@@ -94,7 +110,7 @@ class IndexPage extends React.Component {
   };
 
   handleMouseLeave = (event) => {
-    const icon = this.state.icon
+    const icon = this.state.icon;
     if (event.target.text === icon) {
       this.setState({
         icon: ''
