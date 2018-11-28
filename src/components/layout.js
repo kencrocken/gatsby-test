@@ -1,12 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
-import { StaticQuery, graphql } from 'gatsby'
+/* @flow */
+import React from 'react';
+import Helmet from 'react-helmet';
+import { StaticQuery, graphql } from 'gatsby';
 
-import '../assets/scss/main.scss'
+import '../assets/scss/main.scss';
 
-const Layout = ({ children, location }) => {
+type Props = {
+  children: any,
+  location: any
+};
 
+const Layout = (props: Props) => {
+  const { children, location } = props;
   let content;
 
   if (location && location.pathname === '/') {
@@ -14,7 +19,7 @@ const Layout = ({ children, location }) => {
       <div>
         {children}
       </div>
-    )
+    );
   } else {
     content = (
       <div id="wrapper" className="page">
@@ -22,7 +27,7 @@ const Layout = ({ children, location }) => {
           {children}
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -36,26 +41,19 @@ const Layout = ({ children, location }) => {
           }
         }
       `}
-      render={data => (
-        <>
-          <Helmet
-            title={data.site.siteMetadata.title}
-            meta={[
-              { name: 'description', content: 'Sample' },
-              { name: 'keywords', content: 'sample, something' },
-            ]}
-          >
-            <html lang="en" />
-          </Helmet>
-          {content}
-        </>
+      render={(data) => (
+        <><Helmet
+          title={data.site.siteMetadata.title}
+          meta={[
+            { name: 'description', content: 'Sample' },
+            { name: 'keywords', content: 'sample, something' },
+          ]}
+        >
+          <html lang='en' />
+        </Helmet>{content}</>
       )}
     />
-  )
-}
+  );
+};
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
-
-export default Layout
+export default Layout;

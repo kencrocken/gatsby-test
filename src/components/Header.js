@@ -1,34 +1,55 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Header = (props) => (
-  <header id="header" style={props.timeout ? {display: 'none'} : {}}>
-    <div className="logo">
-      <span className="icon fa-gears"></span>
-      <span className="icon fa-heartbeat"></span>
-      <span className="icon fa-object-group"></span>
-      <span className="icon fa-paint-brush"></span>
-    </div>
-    <div className="content">
-      <div className="inner">
-        <h1>Kathy Jack</h1>
-        <p>The Creative Dept.</p>
+const Header = (props) => {
+  const { handleMouseEnter, handleMouseLeave, onOpenArticle } = props;
+  const pages = ['what', 'how', 'who', 'contact'];
+  const icons = {
+    what: 'fa-cubes',
+    how: 'fa-flash',
+    who: 'fa-hand-spock-o',
+    contact: 'fa-compress'
+  };
+
+  const navigation = (
+    <ul>
+      { pages.map((page, index) => {
+        return (
+          <li id={page} onMouseEnter={(event) => handleMouseEnter(event)} onMouseLeave={(e) => handleMouseLeave(e)} key={index} >
+            <a onClick={() => {onOpenArticle(page);}}>
+              {page}
+            </a>
+          </li>);
+      })}
+    </ul>
+  );
+
+  return (
+    <header id="header" style={props.timeout ? {display: 'none'} : {}}>
+      <div className="logo">
+        <div className="icon-wrap">
+          <span className={props.icon ? `icon ${icons[props.icon]}` : 'icon fa-cog spin-it'}></span>
+        </div>
       </div>
-    </div>
-    <nav>
-      <ul>
-        <li><a onClick={() => {props.onOpenArticle('intro');}}>What</a></li>
-        <li><a onClick={() => {props.onOpenArticle('work');}}>How</a></li>
-        <li><a onClick={() => {props.onOpenArticle('about');}}>Who</a></li>
-        <li><a onClick={() => {props.onOpenArticle('contact');}}>Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-);
+      <div className="content">
+        <div className="inner">
+          <h1>Ken Crocken</h1>
+          <p>Developer</p>
+        </div>
+      </div>
+      <nav>
+        {navigation}
+      </nav>
+    </header>
+  );
+};
 
 Header.propTypes = {
   onOpenArticle: PropTypes.func,
-  timeout: PropTypes.bool
+  handleMouseEnter: PropTypes.func,
+  handleMouseLeave: PropTypes.func,
+  timeout: PropTypes.bool,
+  icon: PropTypes.string
 };
 
 export default Header;

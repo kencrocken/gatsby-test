@@ -13,6 +13,7 @@ class IndexPage extends React.Component {
       timeout: false,
       articleTimeout: false,
       article: '',
+      icon: '',
       loading: 'is-loading',
     };
     this.handleOpenArticle = this.handleOpenArticle.bind(this);
@@ -85,7 +86,24 @@ class IndexPage extends React.Component {
     }
   }
 
+  handleMouseEnter = (event) => {
+    const icon = event.target.text;
+    this.setState({
+      icon
+    });
+  };
+
+  handleMouseLeave = (event) => {
+    const icon = this.state.icon
+    if (event.target.text === icon) {
+      this.setState({
+        icon: ''
+      });
+    }
+  };
+
   render() {
+    const { icon } = this.state;
     return (
       <Layout location={this.props.location}>
         <div
@@ -95,7 +113,10 @@ class IndexPage extends React.Component {
         >
           <div id="wrapper">
             <Header
+              handleMouseEnter={this.handleMouseEnter}
+              handleMouseLeave={this.handleMouseLeave}
               onOpenArticle={this.handleOpenArticle}
+              icon={icon}
               timeout={this.state.timeout}
             />
             <Main

@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "author": "Hunter Chang",
   "dependencies": {
+    "flow-typed": "^2.5.1",
     "gatsby": "^2.0.0",
+    "gatsby-plugin-flow": "^1.0.2",
     "gatsby-plugin-manifest": "^2.0.2",
     "gatsby-plugin-offline": "^2.0.5",
     "gatsby-plugin-react-helmet": "^3.0.0",
@@ -25,6 +27,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "babel-plugin-flow-react-proptypes": "^24.1.2",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.86.0",
     "prettier": "^1.14.2"
   },
   "repository": {

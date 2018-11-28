@@ -1,17 +1,17 @@
 /* eslint-disable */
 module.exports = {
   siteMetadata: {
-    title: "Gatsby Starter - Dimension V2",
-    author: "Hunter Chang",
-    description: "A Gatsby.js V2 Starter based on Dimension by HTML5 UP"
+    title: "kencrocken.github.io",
+    author: "Ken Crocken",
+    description: "A full-stack web developer with a passion for creating websites and apps from the ground up. With additional interests in design, user experience and accessibility."
   },
   plugins: [
     'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'gatsby-starter-default',
-        short_name: 'starter',
+        name: 'kencrocken.github.io',
+        short_name: 'kenCrocken',
         start_url: '/',
         background_color: '#663399',
         theme_color: '#663399',
@@ -20,6 +20,7 @@ module.exports = {
       },
     },
     'gatsby-plugin-sass',
-    'gatsby-plugin-offline'
+    'gatsby-plugin-offline',
+    'gatsby-plugin-flow'
   ],
 }
